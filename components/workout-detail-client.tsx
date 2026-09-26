@@ -34,7 +34,7 @@ export default function WorkoutDetailClient({ id }: { id: string }) {
   if (!workout) return <main className="page-shell"><Navbar/><div className="not-found"><span className="eyebrow">WORKOUT NOT FOUND</span><h1>NO SUCH LIFT.</h1><p>This workout is not present in the current library.</p><Link href="/" className="button button-primary"><ArrowLeft size={16}/> BACK TO LIBRARY</Link></div><Footer/></main>;
 
   const add = () => {
-    if (alreadyPlanned) return toast.info("Already in today&apos;s plan");
+    if (alreadyPlanned) return toast.info("Already in today's plan");
     if (plan.length >= 5) return toast.error("Today's plan is full (5 lifts max)");
     addToPlan(workout); toast.success("Added to today's plan");
   };

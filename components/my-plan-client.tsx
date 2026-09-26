@@ -319,7 +319,7 @@ export default function MyPlanClient() {
             </div>
 
             <label className="plan-sort">
-              <SlidersHorizontal size={14} />
+              <ChevronDown size={14} />
 
               <span>SORT BY</span>
 
