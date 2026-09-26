@@ -4,12 +4,13 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import {
   Check,
+  ChevronDown,
   Clock3,
   ExternalLink,
   Flame,
-  SlidersHorizontal,
   X,
 } from "lucide-react";
+
 import { toast } from "sonner";
 import { useMemo, useState } from "react";
 
