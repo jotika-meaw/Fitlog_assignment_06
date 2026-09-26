@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 900">
+  <rect width="900" height="900" fill="#111510"/>
+  <circle cx="690" cy="180" r="300" fill="#caff00" opacity=".08"/>
+  <circle cx="690" cy="180" r="180" fill="#caff00" opacity=".07"/>
+  <g fill="none" stroke="#caff00" stroke-width="12" opacity=".9">
+    <circle cx="450" cy="360" r="78"/>
+    <path d="M450 440 C390 455 350 530 350 650 L550 650 C550 530 510 455 450 440Z"/>
+    <path d="M350 520 L235 440 M550 520 L665 440"/>
+    <path d="M235 440 L180 355 M665 440 L720 355"/>
+    <path d="M390 650 L330 790 M510 650 L570 790"/>
+  </g>
+  <g fill="#caff00">
+    <rect x="150" y="330" width="65" height="24" rx="8"/>
+    <rect x="685" y="330" width="65" height="24" rx="8"/>
+  </g>
+  <text x="450" y="850" text-anchor="middle" fill="#697168" font-family="Arial" font-size="20" letter-spacing="7">TRAIN WITH INTENT</text>
+</svg>
