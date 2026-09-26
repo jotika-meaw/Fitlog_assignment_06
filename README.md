@@ -1,25 +1,8 @@
 # FitLog
 
-FitLog is a responsive workout planning and tracking web application built with Next.js.
+FitLog is a responsive workout planning and tracking web application built with Next.js. It allows users to explore workouts, view workout details, save exercises, and create a personal workout plan.
 
-## Features
-
-- Workout library
-- Workout search
-- Workout details
-- Add workouts to Today's Plan
-- Save workouts separately
-- Today's Plan and Saved tabs
-- Maximum 5 workouts in today's plan
-- Mark workouts as completed
-- Sort workouts by duration, calories, or rating
-- Toast notifications
-- Loading state
-- Custom 404 page
-- Responsive design
-- LocalStorage persistence
-
-## Technologies
+## Technologies Used
 
 - Next.js
 - React
@@ -30,17 +13,10 @@ FitLog is a responsive workout planning and tracking web application built with 
 - REST API
 - LocalStorage
 
-## Main Pages
+## Key Features
 
-- `/` — Workout Library
-- `/workout/[id]` — Workout Details
-- `/my-plan?tab=plan` — Today's Plan
-- `/my-plan?tab=saved` — Saved Workouts
-
-## API
-
-FitLog uses the FitLog workout API to load workout data.
-
-## Deployment
-
-The project is deployed using Vercel.
+- **Workout Library** — Browse and search available workouts with useful information such as duration, calories, equipment, and rating.
+- **Workout Details** — View detailed information about each workout before adding it to your plan.
+- **Today's Plan** — Add up to five workouts to a personal daily workout plan and mark completed workouts as done.
+- **Saved Workouts** — Save favorite workouts separately and manage them from the My Plan page.
+- **Responsive Design** — Use FitLog comfortably on desktop, tablet, and mobile devices with a responsive interface.
