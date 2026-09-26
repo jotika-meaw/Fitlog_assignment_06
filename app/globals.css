@@ -897,33 +897,47 @@ select {
 }
 
 .tabs {
-  display: flex;
-  gap: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
 
-  border-bottom: 1px solid var(--line);
+  padding: 3px;
+
+  background: #15191a;
+  border: 1px solid #252b27;
+  border-radius: 9px;
+
   margin-bottom: 18px;
 }
 
 .tab {
-  background: none;
   border: 0;
+  background: transparent;
 
-  color: #818981;
+  color: #858c85;
 
-  padding: 12px 15px;
+  padding: 9px 16px;
+
+  border-radius: 7px;
 
   font-size: 11px;
   font-weight: 900;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.04em;
 
   cursor: pointer;
 
-  border-bottom: 2px solid transparent;
+  transition:
+    background 0.18s ease,
+    color 0.18s ease;
+}
+
+.tab:hover {
+  color: var(--text);
 }
 
 .tab.active {
-  color: var(--accent);
-  border-color: var(--accent);
+  background: #252b27;
+  color: var(--text);
 }
 
 /* =========================================
