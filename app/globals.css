@@ -243,13 +243,7 @@ select {
   border: 1px solid var(--line);
   border-radius: 14px;
 
-  background:
-    radial-gradient(
-      circle at 82% 50%,
-      rgba(202, 255, 0, 0.055),
-      transparent 34%
-    ),
-    #111310;
+  background: #15161b;
 }
 
 .hero-content {
