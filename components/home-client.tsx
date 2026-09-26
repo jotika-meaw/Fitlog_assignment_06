@@ -5,7 +5,6 @@ import {
   ArrowDown,
   ArrowRight,
   Search,
-  SlidersHorizontal,
 } from "lucide-react";
 
 import Navbar from "./navbar";
@@ -22,122 +21,123 @@ export default function HomeClient() {
     saved,
   } = useWorkouts();
 
-  const [sort, setSort] = useState("duration");
   const [search, setSearch] = useState("");
+
+  /* =========================================
+     SEARCH / FILTER WORKOUTS
+     ========================================= */
 
   const list = useMemo(() => {
     const query = search.trim().toLowerCase();
 
-    const filtered = workouts.filter((workout) => {
-      if (!query) return true;
+    if (!query) {
+      return workouts;
+    }
 
-      return (
-        workout.name.toLowerCase().includes(query) ||
-        workout.categories.some((category) =>
+    return workouts.filter((workout) => {
+      const nameMatch = workout.name
+        .toLowerCase()
+        .includes(query);
+
+      const categoryMatch = workout.categories.some(
+        (category) =>
           category.toLowerCase().includes(query)
-        )
       );
-    });
 
-    return [...filtered].sort(
-      (a, b) => Number(a[sort]) - Number(b[sort])
-    );
-  }, [workouts, sort, search]);
+      return nameMatch || categoryMatch;
+    });
+  }, [workouts, search]);
 
   return (
     <main className="page-shell">
       <Navbar />
 
-      {/* ==================== HERO ==================== */}
-      <section className="hero">
-        <div className="container hero-grid">
-          <div>
-            <span className="eyebrow">WORKOUT LIBRARY</span>
+      {/* =========================================
+          HERO
+          ========================================= */}
+<section className="hero">
+  <div className="container">
+    <div className="hero-card">
+      <div className="hero-content">
+        <span className="eyebrow">
+          WORKOUT LIBRARY
+        </span>
 
-            <h1 className="display">
-              TRAIN WITH INTENT.
-              <br />
-              LOG EVERY SET.
-            </h1>
+        <h1 className="display hero-title">
+          TRAIN WITH INTENT.
+          <br />
+          LOG EVERY SET.
+        </h1>
 
-            <p className="hero-copy">
-              FitLog is a dark, no-nonsense gym companion: pick a
-              lift, lock it into today&apos;s plan, and watch the
-              week&apos;s work add up.
-            </p>
+        <p className="hero-copy">
+          FitLog is a dark, no-nonsense gym companion:
+          pick a lift, lock it into today&apos;s plan,
+          and watch the week&apos;s work add up.
+        </p>
 
-            <div className="hero-actions">
-              <a
-                href="#library"
-                className="button button-primary"
-              >
-                BROWSE WORKOUTS
-                <ArrowDown size={16} />
-              </a>
+        <div className="hero-actions">
+          <a
+            href="#library"
+            className="button button-primary"
+          >
+            BROWSE WORKOUTS
+            <span className="hero-arrow">↓</span>
+          </a>
 
-              <a
-                href="/my-plan"
-                className="button button-secondary"
-              >
-                OPEN MY PLAN
-                <ArrowRight size={16} />
-              </a>
-            </div>
-          </div>
-
-          {/* Hero Visual */}
-          <div className="hero-art">
-            <img
-              src={workouts[0]?.image || "/hero.svg"}
-              alt="FitLog training visual"
-            />
-
-            <div className="hero-overlay" />
-
-            {/* Compact Plan / Saved Counters */}
-            <div className="hero-status">
-              <span>Plan</span>
-
-              <strong className="hero-count plan-count">
-                {plan.length}
-              </strong>
-
-              <span>Saved</span>
-
-              <strong className="hero-count saved-count">
-                {saved.length}
-              </strong>
-            </div>
-
-            <div className="hero-badge">
-              <strong>12 LIFTS / FULL BODY</strong>
-              <span>Choose. Train. Log.</span>
-            </div>
-          </div>
+          <a
+            href="/my-plan?tab=plan"
+            className="button button-secondary"
+          >
+            OPEN MY PLAN
+            <span className="hero-arrow">→</span>
+          </a>
         </div>
-      </section>
+      </div>
 
-      {/* ==================== LIBRARY ==================== */}
-      <section id="library" className="section">
+      <div className="hero-visual">
+        <img
+          src="/banner1.png"
+          alt="FitLog workout illustration"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+      {/* =========================================
+          WORKOUT LIBRARY
+          ========================================= */}
+
+      <section
+        id="library"
+        className="section"
+      >
         <div className="container">
 
           {/* Library Heading */}
           <div className="section-head">
             <div>
-              <span className="eyebrow">THE LIBRARY</span>
+              <span className="eyebrow">
+                THE LIBRARY
+              </span>
 
-              <h2 className="display">THE LIBRARY</h2>
+              <h2 className="display">
+                THE LIBRARY
+              </h2>
 
               <p className="section-sub">
-                Twelve lifts covering every major muscle group.
+                Twelve lifts covering every major
+                muscle group.
               </p>
             </div>
           </div>
 
-          {/* ==================== SEARCH + SORT TOOLBAR ==================== */}
+          {/* =====================================
+              SEARCH
+              ===================================== */}
+
           <div className="library-toolbar">
 
-            {/* Search */}
             <div className="library-search">
               <Search size={15} />
 
@@ -163,24 +163,6 @@ export default function HomeClient() {
               )}
             </div>
 
-            {/* Sort */}
-            <label className="library-sort">
-              <SlidersHorizontal size={15} />
-
-              <span>SORT BY</span>
-
-              <select
-                value={sort}
-                onChange={(event) =>
-                  setSort(event.target.value)
-                }
-                aria-label="Sort workouts"
-              >
-                <option value="duration">Duration</option>
-                <option value="calories">Calories</option>
-                <option value="rating">Rating</option>
-              </select>
-            </label>
           </div>
 
           {/* Search result information */}
@@ -188,18 +170,23 @@ export default function HomeClient() {
             <div className="library-result-info">
               <span>
                 {list.length}{" "}
-                {list.length === 1 ? "workout" : "workouts"}
+                {list.length === 1
+                  ? "WORKOUT"
+                  : "WORKOUTS"}
               </span>
 
               {search && (
                 <span>
-                  Results for &quot;{search}&quot;
+                  RESULTS FOR &quot;{search}&quot;
                 </span>
               )}
             </div>
           )}
 
-          {/* ==================== LOADING ==================== */}
+          {/* =====================================
+              LOADING
+              ===================================== */}
+
           {loading ? (
             <div className="inline-loading">
               <div>
@@ -223,16 +210,22 @@ export default function HomeClient() {
             </div>
           ) : (
             <>
-              {/* API fallback message */}
+              {/* =================================
+                  API FALLBACK MESSAGE
+                  ================================= */}
+
               {apiError && (
                 <div className="api-message">
-                  Live API is temporarily unavailable. Showing
-                  the built-in workout library so the app remains
-                  usable.
+                  Live API is temporarily unavailable.
+                  Showing the built-in workout library
+                  so the app remains usable.
                 </div>
               )}
 
-              {/* Workout Grid */}
+              {/* =================================
+                  WORKOUT GRID
+                  ================================= */}
+
               {list.length > 0 ? (
                 <div className="workout-grid">
                   {list.map((workout) => (
@@ -243,6 +236,10 @@ export default function HomeClient() {
                   ))}
                 </div>
               ) : (
+                /* ================================
+                   NO SEARCH RESULTS
+                   ================================ */
+
                 <div className="empty-state">
                   <div>
                     <span className="eyebrow">
@@ -254,8 +251,8 @@ export default function HomeClient() {
                     </h2>
 
                     <p>
-                      Try another workout name or muscle-group
-                      tag.
+                      Try another workout name or
+                      muscle-group tag.
                     </p>
 
                     <button
@@ -272,6 +269,10 @@ export default function HomeClient() {
           )}
         </div>
       </section>
+
+      {/* =========================================
+          FOOTER
+          ========================================= */}
 
       <Footer />
     </main>
